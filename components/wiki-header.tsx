@@ -27,7 +27,7 @@ export interface WikiHeaderProps {
 
 export function WikiHeader({
   title = "NEXUS Wiki",
-  subtitle = "Plant Knowledge Network",
+  subtitle = "플랜트 지식 네트워크",
   onMenuClick,
 }: WikiHeaderProps) {
   const [dark, setDark] = useState(false);

@@ -47,7 +47,7 @@ function AssetSketch({ title }: { title: string }) {
       <div className={pump ? "asset-machine asset-machine--pump" : "asset-machine"}>
         <span /><i /><b />
       </div>
-      <small>ASSET DIGITAL TWIN · LIVE</small>
+      <small>설비 디지털 트윈 · 실시간</small>
     </div>
   );
 }
@@ -75,7 +75,7 @@ function SearchPanel({ documents, onSelect }: { documents: WikiDocument[]; onSel
           )) : <p>일치하는 문서가 없습니다. Enter를 눌러 새 문서를 만드세요.</p>}
         </div>
       )}
-      <kbd>{documents.length} docs</kbd>
+      <kbd>문서 {documents.length}개</kbd>
     </div>
   );
 }
@@ -171,18 +171,18 @@ export function WikiApp({ initialTarget }: { initialTarget?: string } = {}) {
   return (
     <WikiShell
       toc={shellToc}
-      breadcrumbs={[{ label: "NEXUS" }, { label: document.categories[0] ?? "지식" }, { label: document.title }]}
+      breadcrumbs={[{ label: "넥서스" }, { label: document.categories[0] ?? "지식" }, { label: document.title }]}
     >
       <SearchPanel documents={documents} onSelect={selectDocument} />
 
       {view === "wikifier" ? (
         <section className="tool-page">
           <button className="wiki-button" onClick={() => setView("read")}><ArrowLeft size={14} /> 문서로 돌아가기</button>
-          <div className="tool-page__heading"><Sparkles /><div><span>KNOWLEDGE AUTOMATION</span><h1>AI 위키파이어</h1><p>산재한 현장 기록을 재사용 가능한 구조적 지식으로 전환합니다.</p></div></div>
+          <div className="tool-page__heading"><Sparkles /><div><span>지식 자동화</span><h1>AI 위키 변환</h1><p>산재한 현장 기록을 재사용 가능한 구조적 지식으로 전환합니다.</p></div></div>
           <WikifierDropzone
             knownDocuments={documents.map((item) => item.title)}
             onWikified={(content) => {
-              const title = /^#\s+(.+)$/m.exec(content)?.[1] ?? "AI 위키파이어 초안";
+              const title = /^#\s+(.+)$/m.exec(content)?.[1] ?? "AI 위키 변환 초안";
               const draft = createDocument({ title, content, categories: ["AI 초안", "현장 지식"] });
               setSelectedId(draft.id);
               setView("edit");
@@ -191,7 +191,7 @@ export function WikiApp({ initialTarget }: { initialTarget?: string } = {}) {
         </section>
       ) : view === "explore" ? (
         <section className="tool-page explore-page">
-          <div className="tool-page__heading"><Network /><div><span>KNOWLEDGE EXPLORER</span><h1>{exploreTitle}</h1><p>조직의 지식 노드를 사람, 설비, 규정과 함께 탐색합니다.</p></div></div>
+          <div className="tool-page__heading"><Network /><div><span>지식 탐색</span><h1>{exploreTitle}</h1><p>조직의 지식 노드를 사람, 설비, 규정과 함께 탐색합니다.</p></div></div>
           <div className="explore-stats"><span><b>{documents.length}</b> 전체 문서</span><span><b>{new Set(documents.flatMap((item) => item.categories)).size}</b> 분류</span><span><b>{documents.reduce((sum, item) => sum + item.revisions.length, 0)}</b> 리비전</span></div>
           <div className="explore-list">{[...documents].sort((a,b) => Date.parse(b.updatedAt) - Date.parse(a.updatedAt)).map((item) => <button key={item.id} onClick={() => selectDocument(item)}><span className="backlink-icon"><BookOpen size={16}/></span><span><b>{item.title}</b><small>{item.summary}</small></span><em>{item.categories[0]}</em><time>v{item.version}</time></button>)}</div>
         </section>
@@ -212,7 +212,7 @@ export function WikiApp({ initialTarget }: { initialTarget?: string } = {}) {
       ) : view === "history" ? (
         <section className="tool-page revision-page">
           <button className="wiki-button" onClick={() => setView("read")}><ArrowLeft size={14} /> 문서로 돌아가기</button>
-          <div className="tool-page__heading"><GitCompareArrows /><div><span>REVISION CONTROL</span><h1>{document.title}의 역사</h1><p>{document.revisions.length}개 버전 · 현재 v{document.version}</p></div></div>
+          <div className="tool-page__heading"><GitCompareArrows /><div><span>버전 관리</span><h1>{document.title}의 역사</h1><p>{document.revisions.length}개 버전 · 현재 v{document.version}</p></div></div>
           <div className="revision-picker">
             {document.revisions.map((revision, index) => (
               <button key={revision.id} className={historyPair.includes(index) ? "is-selected" : ""} onClick={() => setHistoryPair(([left]) => [index, left === index ? 0 : left])}>
@@ -231,7 +231,7 @@ export function WikiApp({ initialTarget }: { initialTarget?: string } = {}) {
         <article className="wiki-document" onClick={handleWikiClick}>
           <header className="wiki-title-row">
             <div className="wiki-title">
-              <div className="document-kicker"><Activity size={13} /> VERIFIED OPERATIONAL KNOWLEDGE</div>
+              <div className="document-kicker"><Activity size={13} /> 검증된 운영 지식</div>
               <h1>{document.title}</h1>
               <p>{document.summary}</p>
             </div>
@@ -259,7 +259,7 @@ export function WikiApp({ initialTarget }: { initialTarget?: string } = {}) {
               <WikiRenderer content={document.content} documents={documents} className="wiki-prose" />
 
               <section className="backlinks-panel">
-                <header><div><Link2 size={18} /><span><b>역링크 탐색기</b><small>이 문서를 인용한 지식</small></span></div><em>{backlinks.length} INLINKS</em></header>
+                <header><div><Link2 size={18} /><span><b>역링크 탐색기</b><small>이 문서를 인용한 지식</small></span></div><em>인용 {backlinks.length}건</em></header>
                 {backlinks.length ? backlinks.map((item) => (
                   <button key={item.id} onClick={() => selectDocument(item)}>
                     <span className="backlink-icon"><BookOpen size={16} /></span>
@@ -274,7 +274,7 @@ export function WikiApp({ initialTarget }: { initialTarget?: string } = {}) {
               <Infobox
                 title={document.infobox?.title ?? document.title}
                 subtitle={document.infobox?.subtitle ?? document.summary}
-                eyebrow={document.categories.includes("인물") ? "SUBJECT MATTER EXPERT" : "PLANT KNOWLEDGE NODE"}
+                eyebrow={document.categories.includes("인물") ? "분야별 전문가" : "플랜트 지식 항목"}
                 image={<AssetSketch title={document.title} />}
                 status={document.categories.includes("규정") ? "현행 규정" : "검증 완료"}
                 rows={infoboxRows}

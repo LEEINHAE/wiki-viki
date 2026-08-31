@@ -12,4 +12,4 @@
 
 <Header />
 {@render children()}
-<footer class="site-footer"><div>Wiki Viki · Internal knowledge, written together.</div><div><a href="/wiki/wiki-viki:basic-policy">Terms</a> · <a href="/wiki/wiki-viki:help">Help</a></div></footer>
+<footer class="site-footer"><div>Wiki Viki · 함께 작성하고 성장하는 사내 지식.</div><div><a href="/wiki/wiki-viki:기본-정책">이용 원칙</a> · <a href="/wiki/wiki-viki:도움말">도움말</a></div></footer>

@@ -17,6 +17,5 @@ export async function parseUpload(file) {
 			await parser.destroy();
 		}
 	}
-	throw new Error('Only DOCX and text-based PDF files are supported.');
+	throw new Error('DOCX와 텍스트 기반 PDF 파일만 지원합니다.');
 }
-

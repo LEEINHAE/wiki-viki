@@ -60,23 +60,23 @@ export function WikiShell({
         {menuOpen && <button className="sidebar-backdrop" aria-label="메뉴 닫기" onClick={() => setMenuOpen(false)} />}
         <aside className={`wiki-sidebar ${menuOpen ? "is-open" : ""}`} aria-label="위키 탐색">
           <nav className="sidebar-nav">
-            <p className="sidebar-label">WORKSPACE</p>
+            <p className="sidebar-label">작업 공간</p>
             <Link href="/" onClick={() => setMenuOpen(false)} className="is-active"><Home size={17} /> 지식 홈</Link>
             <Link href="/recent"><Clock3 size={17} /> 최근 변경</Link>
             <Link href="/favorites"><Star size={17} /> 즐겨찾기 <span>12</span></Link>
-            <p className="sidebar-label">KNOWLEDGE</p>
+            <p className="sidebar-label">지식 탐색</p>
             <Link href="/category/equipment"><Settings2 size={17} /> 플랜트 설비</Link>
             <Link href="/category/regulations"><FileText size={17} /> 사내 규정</Link>
             <Link href="/people"><Network size={17} /> 실무자 디렉터리</Link>
             <Link href="/graph"><GitBranch size={17} /> 지식 그래프</Link>
-            <p className="sidebar-label">AI TOOLS</p>
-            <Link href="/wikifier" className="sidebar-ai-link"><Sparkles size={17} /> AI 위키파이어 <em>NEW</em></Link>
+            <p className="sidebar-label">AI 도구</p>
+            <Link href="/wikifier" className="sidebar-ai-link"><Sparkles size={17} /> AI 위키 변환 <em>신규</em></Link>
           </nav>
           <div className="sidebar-card">
             <BookOpen size={19} />
-            <div><strong>오늘의 지식</strong><p>Mechanical Seal의 Flush Plan을 복습해 보세요.</p></div>
+            <div><strong>오늘의 지식</strong><p>메카니컬 씰의 플러시 플랜을 복습해 보세요.</p></div>
           </div>
-          {sidebarFooter ?? <p className="sidebar-footer">NEXUS Wiki · Internal<br />Knowledge that compounds.</p>}
+          {sidebarFooter ?? <p className="sidebar-footer">NEXUS Wiki · 함께 쌓아 가는<br />사내 지식 저장소</p>}
         </aside>
 
         <div className="wiki-content-frame">
@@ -93,7 +93,7 @@ export function WikiShell({
 
         <aside className="wiki-toc-rail" aria-label="문서 목차">
           <div className="wiki-toc">
-            <div className="wiki-toc__heading"><span>CONTENTS</span><small>{toc.length} sections</small></div>
+            <div className="wiki-toc__heading"><span>목차</span><small>{toc.length}개 항목</small></div>
             <nav>
               {toc.map((item) => (
                 <a

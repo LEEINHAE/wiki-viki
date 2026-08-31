@@ -4,7 +4,7 @@ import { getDocument, recentChanges, renderWiki, buildToc } from '$lib/server/wi
 
 export async function load({ params }) {
 	let result;
-	try { result = await getDocument(params.slug); } catch (cause) { error(503, `Database unavailable: ${cause.message}`); }
+	try { result = await getDocument(params.slug); } catch (cause) { error(503, `데이터베이스를 사용할 수 없습니다: ${cause.message}`); }
 	if (!result) return { missing: true, slug: params.slug, changes: await recentChanges() };
 	const { document, redirectedFrom } = result;
 	const sql = db();
@@ -14,4 +14,3 @@ export async function load({ params }) {
 	]);
 	return { missing: false, document, redirectedFrom, html, toc: buildToc(document.content), changes, backlinks };
 }
-

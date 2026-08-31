@@ -20,7 +20,7 @@ export interface InfoboxProps {
 export function Infobox({
   title,
   subtitle,
-  eyebrow = "PLANT ASSET",
+  eyebrow = "플랜트 설비",
   image,
   status = "정상 운전",
   rows,
@@ -52,4 +52,3 @@ export function Infobox({
     </aside>
   );
 }
-

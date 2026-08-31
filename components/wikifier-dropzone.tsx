@@ -25,7 +25,7 @@ function wikify(raw: string, documents: string[], shouldLink: boolean) {
   const lines = cleaned.split("\n").map((line) => line.trim()).filter(Boolean);
   const title = lines[0]?.replace(/^#+\s*/, "").slice(0, 60) || "새 업무 지식";
   const body = lines.slice(1).map((line) => /^[-*]\s/.test(line) ? line : `- ${line}`).join("\n") || "- 내용을 보완해 주세요.";
-  const template = `# ${title}\n\n> 이 문서는 현장 메모를 AI 위키파이어로 구조화한 초안입니다. 검토 후 확정해 주세요.\n\n## 1. 개요\n${body}\n\n## 2. 제원\n| 항목 | 내용 |\n| --- | --- |\n| 설비/업무 | ${title} |\n| 담당 조직 | 확인 필요 |\n| 적용 범위 | 확인 필요 |\n\n## 3. 트러블 및 조치 이력\n- **증상:** 원문 메모를 기준으로 보완 필요\n- **원인:** 현장 확인 필요\n- **조치:** 표준 작업 절차에 따라 기록\n\n## 4. 실무 꿀팁\n- 작업 전 [[안전작업허가서]]와 [[LOTO]] 절차를 확인한다.\n- 변경된 제원과 정비 이력은 작업 직후 갱신한다.\n\n## 5. 관련 문서\n- [[설비보전]]\n- [[안전관리규정]]`;
+  const template = `# ${title}\n\n> 이 문서는 현장 메모를 AI 위키 변환으로 구조화한 초안입니다. 검토 후 확정해 주세요.\n\n## 1. 개요\n${body}\n\n## 2. 제원\n| 항목 | 내용 |\n| --- | --- |\n| 설비/업무 | ${title} |\n| 담당 조직 | 확인 필요 |\n| 적용 범위 | 확인 필요 |\n\n## 3. 트러블 및 조치 이력\n- **증상:** 원문 메모를 기준으로 보완 필요\n- **원인:** 현장 확인 필요\n- **조치:** 표준 작업 절차에 따라 기록\n\n## 4. 실무 꿀팁\n- 작업 전 [[안전작업허가서]]와 [[LOTO]] 절차를 확인한다.\n- 변경된 제원과 정비 이력은 작업 직후 갱신한다.\n\n## 5. 관련 문서\n- [[설비보전]]\n- [[안전관리규정]]`;
   return shouldLink ? autoLink(template, documents) : template;
 }
 
@@ -70,7 +70,7 @@ export function WikifierDropzone({
   return (
     <section className={`rounded-xl border border-violet-200 bg-gradient-to-br from-white via-white to-violet-50 p-5 shadow-sm dark:border-violet-900 dark:from-zinc-900 dark:via-zinc-900 dark:to-violet-950/30 ${className}`}>
       <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
-        <div><div className="flex items-center gap-2 font-bold text-zinc-900 dark:text-white"><span className="rounded-lg bg-violet-100 p-2 text-violet-700 dark:bg-violet-950 dark:text-violet-300"><Bot className="h-5 w-5" /></span>AI 위키파이어 <span className="rounded-full bg-violet-100 px-2 py-0.5 text-[10px] font-extrabold text-violet-700 dark:bg-violet-950 dark:text-violet-300">BETA</span></div><p className="mt-2 text-sm text-zinc-500">업무 일지나 거친 메모를 넣으면 사내 위키 표준 초안으로 정리합니다.</p></div>
+        <div><div className="flex items-center gap-2 font-bold text-zinc-900 dark:text-white"><span className="rounded-lg bg-violet-100 p-2 text-violet-700 dark:bg-violet-950 dark:text-violet-300"><Bot className="h-5 w-5" /></span>AI 위키 변환 <span className="rounded-full bg-violet-100 px-2 py-0.5 text-[10px] font-extrabold text-violet-700 dark:bg-violet-950 dark:text-violet-300">베타</span></div><p className="mt-2 text-sm text-zinc-500">업무 일지나 거친 메모를 넣으면 사내 위키 표준 초안으로 정리합니다.</p></div>
         <label className="flex cursor-pointer items-center gap-2 text-xs font-semibold text-zinc-600 dark:text-zinc-300"><Link2 className="h-3.5 w-3.5 text-emerald-600" />용어 자동 링크<input type="checkbox" checked={useAutoLink} onChange={(event) => setUseAutoLink(event.target.checked)} className="h-4 w-4 accent-emerald-600" /></label>
       </div>
 
