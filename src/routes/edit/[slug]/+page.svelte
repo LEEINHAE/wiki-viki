@@ -1,0 +1,10 @@
+<script>let { data, form } = $props(); const title = $derived(form?.title ?? data.document?.title ?? decodeURIComponent(data.slug).replaceAll('-', ' '));</script>
+<svelte:head><title>Edit {title} — Wiki Viki</title></svelte:head>
+<div class="form-page"><form class="wiki-form" method="POST" action="?/save"><h1>{data.document ? 'Edit' : 'Create'}: {title}</h1>
+	{#if data.databaseError}<div class="notice warning">{data.databaseError}</div>{/if}{#if form?.message}<div class="notice warning">{form.message}</div>{/if}
+	<div class="field"><label for="title">Document title</label><input id="title" name="title" value={title} required /></div>
+	<div class="field"><label for="content">Wiki text</label><textarea id="content" name="content" required>{form?.content ?? data.document?.content ?? '# Overview\n\nWrite this document here. Link another page with [[Document Name]].'}</textarea><small>Markdown, <code>[[Wiki Links]]</code>, footnotes, tables, quotes, code, and ~~strike~~ are supported.</small></div>
+	<div class="field"><label for="aliases">Redirect aliases</label><input id="aliases" name="aliases" value={form?.aliases ?? data.aliases ?? ''} placeholder="Blow down, Blowdown, Blow-Down" /><small>Comma-separated aliases resolve to this canonical document.</small></div>
+	<div class="form-row"><div class="field"><label for="editor">Anonymous editor handle</label><input id="editor" name="editor" value={form?.editor ?? 'Editor-01'} required /></div><div class="field"><label for="summary">Edit summary</label><input id="summary" name="summary" value={form?.summary ?? ''} placeholder="What changed?" /></div></div>
+	<div class="button-row"><a class="secondary-button" href={data.document ? `/wiki/${data.document.slug}` : '/'}>Cancel</a><button class="primary-button">Save document</button></div>
+</form>{#if data.document}<form class="wiki-form" method="POST" action="?/delete" onsubmit={(event) => { if (!confirm(`Delete ${data.document.title}? Its history, discussions, and redirects will also be deleted.`)) event.preventDefault(); }}><div class="button-row"><button class="danger-button">Delete document</button></div></form>{/if}</div>

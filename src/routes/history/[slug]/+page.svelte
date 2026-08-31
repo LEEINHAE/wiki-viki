@@ -1,0 +1,6 @@
+<script>let { data, form } = $props();</script>
+<div class="form-page"><section class="wiki-form"><header class="document-header"><h1>History: {data.document.title}</h1><div class="document-meta">Every saved version of this document.</div></header>
+	<nav class="document-actions"><a href={`/wiki/${data.document.slug}`}>Read</a><a href={`/edit/${data.document.slug}`}>Edit</a><a href={`/discussion/${data.document.slug}`}>Discussion</a></nav>{#if form?.message}<div class="notice warning">{form.message}</div>{/if}
+	{#if data.selected}<h2>Diff for revision {data.selected}</h2><div class="diff-box">{#each data.changes as part}<span class:diff-add={part.added} class:diff-remove={part.removed}>{part.value}</span>{/each}</div>{/if}
+	<ul class="history-list">{#each data.revisions as revision}<li><time>{new Date(revision.created_at).toLocaleString()}</time><b>{revision.editor_handle}</b><span>{revision.summary || 'No summary'}</span><span><a href={`?diff=${revision.id}`}>Diff</a> · <form method="POST" action="?/rollback" style="display:inline"><input type="hidden" name="revision" value={revision.id} /><button class="danger-button">Rollback</button></form></span></li>{/each}</ul>
+</section></div>
