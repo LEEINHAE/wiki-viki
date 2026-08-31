@@ -8,9 +8,3 @@ export function db() {
 	client ??= postgres(env.DATABASE_URL, { max: 10, idle_timeout: 20 });
 	return client;
 }
-
-export async function closeDb() {
-	if (client) await client.end();
-	client = undefined;
-}
-
