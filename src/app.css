@@ -1,18 +1,21 @@
 :root {
 	font-family: Arial, 'Noto Sans KR', sans-serif;
-	color: #252525;
-	background: #eceff1;
+	color: #344052;
+	background: #f3f1fb;
 	font-synthesis: none;
-	--bg: #eceff1;
-	--paper: #fff;
-	--text: #252525;
-	--muted: #777;
-	--line: #d5d5d5;
-	--soft: #f5f5f5;
-	--accent: #00a495;
-	--accent-dark: #007f73;
-	--link: #0275d8;
-	--missing: #d33;
+	--bg: #f3f1fb;
+	--paper: #fffefe;
+	--text: #344052;
+	--muted: #758095;
+	--line: #ddd9eb;
+	--soft: #f7f4fc;
+	--accent: #8bcfc2;
+	--accent-dark: #397f75;
+	--link: #5279b9;
+	--missing: #c45f78;
+	--lavender: #c8b8e8;
+	--blush: #f3c6cf;
+	--butter: #f7e7a9;
 }
 * {
 	box-sizing: border-box;
@@ -42,9 +45,9 @@ textarea {
 }
 .topbar {
 	height: 55px;
-	background: #008275;
-	border-bottom: 3px solid #006b61;
-	color: #fff;
+	background: #a9ddd2;
+	border-bottom: 3px solid #82c4b7;
+	color: #294b4c;
 	position: sticky;
 	top: 0;
 	z-index: 20;
@@ -62,7 +65,7 @@ textarea {
 	display: flex;
 	align-items: center;
 	gap: 9px;
-	color: #fff;
+	color: #294b4c;
 	font-size: 20px;
 	font-weight: 700;
 	margin-right: 28px;
@@ -75,8 +78,9 @@ textarea {
 	height: 31px;
 	display: grid;
 	place-items: center;
-	background: #fff;
-	color: #008275;
+	background: #fff9fc;
+	color: #397f75;
+	border-radius: 8px;
 	font-family: Georgia, serif;
 	font-size: 23px;
 	font-weight: bold;
@@ -89,12 +93,12 @@ textarea {
 	display: flex;
 	align-items: center;
 	padding: 0 14px;
-	color: #fff;
+	color: #294b4c;
 	border-left: 1px solid rgba(255, 255, 255, 0.12);
 	font-size: 13px;
 }
 .topbar nav a:hover {
-	background: rgba(0, 0, 0, 0.12);
+	background: rgba(255, 255, 255, 0.32);
 	text-decoration: none;
 }
 .nav-search {
@@ -104,16 +108,16 @@ textarea {
 }
 .nav-search input {
 	width: 190px;
-	border: 1px solid #006f65;
-	background: #fff;
-	color: #222;
+	border: 1px solid #78b8ad;
+	background: #fffefe;
+	color: #344052;
 	padding: 5px 9px;
 }
 .nav-search button,
 .theme-button {
-	border: 1px solid #006f65;
-	background: #f4f4f4;
-	color: #333;
+	border: 1px solid #78b8ad;
+	background: #f6effb;
+	color: #435064;
 	cursor: pointer;
 }
 .nav-search button {
@@ -139,6 +143,7 @@ textarea {
 	border: 1px solid var(--line);
 	padding: 28px 34px 50px;
 	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+	border-radius: 10px;
 }
 .recent-sidebar {
 	background: var(--paper);
@@ -147,11 +152,13 @@ textarea {
 	font-size: 12px;
 	position: sticky;
 	top: 78px;
+	border-radius: 9px;
+	overflow: hidden;
 }
 .recent-sidebar h2 {
 	font-size: 14px;
-	color: #fff;
-	background: #00a495;
+	color: #315e59;
+	background: #c5e9e1;
 	margin: 0;
 	padding: 9px 11px;
 }
@@ -191,7 +198,7 @@ textarea {
 	font-size: 12px;
 }
 .document-header {
-	border-bottom: 1px solid #aaa;
+	border-bottom: 1px solid var(--line);
 	margin-bottom: 18px;
 	padding-bottom: 12px;
 }
@@ -237,13 +244,13 @@ textarea {
 }
 .warning {
 	border-left-color: #e0a800;
-	background: #fff9df;
+	background: #fff8dc;
 }
 .toc {
 	display: inline-block;
 	min-width: 310px;
 	max-width: 100%;
-	border: 1px solid #bbb;
+	border: 1px solid var(--line);
 	background: var(--soft);
 	padding: 12px 17px;
 	margin: 8px 0 25px;
@@ -283,7 +290,7 @@ textarea {
 .wiki-content h3,
 .wiki-content h4 {
 	position: relative;
-	border-bottom: 1px solid #aaa;
+	border-bottom: 1px solid var(--line);
 	padding-bottom: 5px;
 	margin: 36px 0 13px;
 	letter-spacing: -0.3px;
@@ -297,27 +304,27 @@ textarea {
 }
 .wiki-content h3 {
 	font-size: 19px;
-	border-color: #ccc;
+	border-color: var(--line);
 }
 .wiki-content blockquote {
 	margin: 14px 0;
 	padding: 10px 14px;
-	border-left: 4px solid #00a495;
+	border-left: 4px solid var(--accent);
 	background: var(--soft);
 	color: var(--text);
 }
 .wiki-content code {
-	background: #eee;
-	border: 1px solid #ddd;
+	background: #f1edf8;
+	border: 1px solid #ddd6ea;
 	padding: 1px 4px;
 	border-radius: 2px;
 	font-family: Consolas, monospace;
 	font-size: 0.92em;
 }
 .wiki-content pre {
-	background: #292b2c;
-	color: #f7f7f7;
-	border: 1px solid #111;
+	background: #3d4255;
+	color: #faf9ff;
+	border: 1px solid #303444;
 	padding: 13px;
 	overflow: auto;
 }
@@ -333,15 +340,15 @@ textarea {
 }
 .wiki-content th,
 .wiki-content td {
-	border: 1px solid #aaa;
+	border: 1px solid var(--line);
 	padding: 6px 10px;
 }
 .wiki-content th {
-	background: #e8e8e8;
+	background: #eee9f8;
 }
 .wiki-content del {
 	text-decoration-thickness: 1px;
-	color: #777;
+	color: var(--muted);
 }
 .wiki-link.missing,
 .missing {
@@ -376,10 +383,11 @@ textarea {
 	width: 60px;
 	height: 60px;
 	background: var(--accent);
-	color: #fff;
+	color: #315e59;
 	font:
 		42px Georgia,
 		serif;
+	border-radius: 16px;
 }
 .home-wordmark h1 {
 	font-size: 32px;
@@ -405,19 +413,21 @@ textarea {
 .primary-button {
 	border: 1px solid var(--accent-dark);
 	background: var(--accent);
-	color: #fff;
+	color: #315e59;
 	font-weight: bold;
 	padding: 7px 18px;
 	cursor: pointer;
 }
 .welcome-panel {
-	border: 1px solid #aaa;
+	border: 1px solid var(--line);
+	border-radius: 9px;
+	overflow: hidden;
 	margin: 24px 0;
 }
 .welcome-panel h2,
 .main-section h2 {
-	background: #00a495;
-	color: #fff;
+	background: #c5e9e1;
+	color: #315e59;
 	font-size: 17px;
 	margin: 0;
 	padding: 8px 12px;
@@ -457,7 +467,8 @@ textarea {
 }
 .main-section h2 {
 	font-size: 15px;
-	background: #536d79;
+	background: #d9cff0;
+	color: #51466b;
 }
 .bullet-list,
 .document-list {
@@ -481,9 +492,9 @@ textarea {
 }
 .tag {
 	font-size: 10px;
-	background: #eee;
-	color: #444;
-	border: 1px solid #ccc;
+	background: #f8dfe5;
+	color: #7f4655;
+	border: 1px solid #edbec9;
 	padding: 1px 4px;
 	margin-right: 6px;
 }
@@ -498,7 +509,7 @@ textarea {
 	padding: 28px;
 }
 .wiki-form h1 {
-	border-bottom: 1px solid #aaa;
+	border-bottom: 1px solid var(--line);
 	padding-bottom: 10px;
 	margin-top: 0;
 }
@@ -514,7 +525,7 @@ textarea {
 .field textarea,
 .field select {
 	width: 100%;
-	border: 1px solid #aaa;
+	border: 1px solid var(--line);
 	background: var(--paper);
 	padding: 8px;
 }
@@ -537,14 +548,14 @@ textarea {
 }
 .secondary-button,
 .danger-button {
-	border: 1px solid #999;
+	border: 1px solid #c6bfd8;
 	background: var(--soft);
 	padding: 7px 16px;
 	cursor: pointer;
 }
 .danger-button {
-	border-color: #b33;
-	color: #b33;
+	border-color: #c66c82;
+	color: #a84961;
 }
 .history-list {
 	border-top: 1px solid var(--line);
@@ -565,10 +576,10 @@ textarea {
 	padding: 12px;
 }
 .diff-add {
-	background: #dfd;
+	background: #dcf3e7;
 }
 .diff-remove {
-	background: #fdd;
+	background: #f8dfe5;
 }
 .thread {
 	border: 1px solid var(--line);
@@ -585,17 +596,17 @@ textarea {
 	padding: 12px;
 }
 .upload-zone {
-	border: 2px dashed #aaa;
+	border: 2px dashed #bcb2d4;
 	background: var(--soft);
 	padding: 35px;
 	text-align: center;
 }
 .status-blocked {
-	color: #b22;
+	color: #a84961;
 	font-weight: bold;
 }
 .status-review {
-	color: #a66b00;
+	color: #946a19;
 	font-weight: bold;
 }
 .draft-row {
@@ -612,30 +623,50 @@ textarea {
 	color: var(--muted);
 }
 [data-theme='dark'] {
-	--bg: #202326;
-	--paper: #2b2e31;
-	--text: #e4e4e4;
-	--muted: #aaa;
-	--line: #484b4e;
-	--soft: #34383c;
-	--link: #62aeea;
-	--missing: #ff7474;
+	--bg: #282936;
+	--paper: #343543;
+	--text: #f1eef7;
+	--muted: #bbb7c9;
+	--line: #535365;
+	--soft: #3e3e4e;
+	--accent: #8bcfc2;
+	--accent-dark: #a9ddd2;
+	--link: #aebff0;
+	--missing: #f1a2b4;
 }
 [data-theme='dark'] .wiki-content code {
-	background: #202326;
-	border-color: #555;
+	background: #292a37;
+	border-color: #555568;
 }
 [data-theme='dark'] .wiki-content th {
-	background: #3b3f43;
+	background: #464658;
 }
 [data-theme='dark'] .tag {
-	background: #444;
-	color: #eee;
-	border-color: #666;
+	background: #574b61;
+	color: #f6edf6;
+	border-color: #77667f;
 }
 [data-theme='dark'] .nav-search input {
-	background: #252525;
-	color: #eee;
+	background: #292a37;
+	color: #f1eef7;
+}
+[data-theme='dark'] .topbar {
+	background: #5d827d;
+	border-bottom-color: #4a6e69;
+	color: #fff;
+}
+[data-theme='dark'] .brand,
+[data-theme='dark'] .topbar nav a {
+	color: #fff;
+}
+[data-theme='dark'] .recent-sidebar h2,
+[data-theme='dark'] .welcome-panel h2 {
+	background: #496f69;
+	color: #f5fffc;
+}
+[data-theme='dark'] .main-section h2 {
+	background: #615777;
+	color: #faf7ff;
 }
 @media (max-width: 900px) {
 	.site-grid {
