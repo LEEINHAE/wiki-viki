@@ -37,14 +37,23 @@ export async function saveDocument({
 }) {
 	const sql = db();
 	const slug = originalSlug || slugify(title);
-	return sql.begin(async (tx) => {
-		const [doc] = await tx`
-			INSERT INTO documents (slug, title, content, editor_handle) VALUES (${slug}, ${title}, ${content}, ${editor})
-			ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title, content = EXCLUDED.content, editor_handle = EXCLUDED.editor_handle, updated_at = NOW()
-			RETURNING *`;
-		await tx`INSERT INTO revisions (document_id, content, editor_handle, summary) VALUES (${doc.id}, ${content}, ${editor}, ${summary})`;
-		return doc;
-	});
+	const [doc] = await sql`
+		WITH upserted AS (
+			INSERT INTO documents (slug, title, content, editor_handle)
+			VALUES (${slug}, ${title}, ${content}, ${editor})
+			ON CONFLICT (slug) DO UPDATE SET
+				title = EXCLUDED.title,
+				content = EXCLUDED.content,
+				editor_handle = EXCLUDED.editor_handle,
+				updated_at = NOW()
+			RETURNING *
+		), inserted_revision AS (
+			INSERT INTO revisions (document_id, content, editor_handle, summary)
+			SELECT id, ${content}, ${editor}, ${summary} FROM upserted
+		)
+		SELECT * FROM upserted
+	`;
+	return doc;
 }
 
 export async function recentChanges(limit = 12) {
